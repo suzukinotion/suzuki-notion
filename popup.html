@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Extension Popup</title>
+  <link rel="stylesheet" href="popup.css" />
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="width: 500px; height: 500px; display: none"></div>
+  <form id="tokenForm" class="dataForm">
+    <label for="tokenInput">Token:</label>
+    <input type="password" id="tokenInput" name="token" required>
+    <br>
+    <button type="submit">Set Token</button>
+  </form>
+  <form id="dbForm" class="dataForm">
+    <label for="dbInput">Database ID:</label>
+    <input type="text" id="dbInput" name="dbID" required>
+    <br>
+    <button type="submit">Set Database ID</button>
+  </form>
+  <script src="popup.js"></script>
+  <button id="postButton">Calcular datos</button>
+  <button id="newWeek">Nueva semana</button>
+</body>
+</html>
+

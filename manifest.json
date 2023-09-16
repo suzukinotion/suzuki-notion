@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Suzuki Notion",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "tabs",
+    "https://api.notion.com/*",
+    "http://api.notion.com/*",
+    "https://www.gstatic.com/*",
+    "http://www.gstatic.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "suzuki-notion@test.me",
+      "strict_min_version": "42.0"
+    }
+  },
+  "description": "Adds extra functionality and chart visualization to a Suzuki notion page",
+
+  "icons": {
+    "64": "icons/icon.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "64": "icons/icon.png"
+    }
+  },
+  "content_security_policy": "script-src 'self' https://www.gstatic.com ; object-src 'self'"
+}
