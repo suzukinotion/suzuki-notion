@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Suzuki Notion",
-  "version": "1.1",
+  "version": "1.1.1",
   "permissions": [
     "storage",
     "tabs",
@@ -17,7 +17,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "suzuki-notion@test.me",
-      "strict_min_version": "42.0"
+      "strict_min_version": "57.0"
     }
   },
   "description": "Adds extra functionality and chart visualization to a Suzuki notion page",

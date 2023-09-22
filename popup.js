@@ -206,6 +206,10 @@ function chart (stats) {
     ]);
 
     var options = {
+      backgroundColor: {
+      fill:"#111"
+      },
+      chartArea: { backgroundColor: '#111' },
       chart: {
         title: 'Datos de pr\u00e1ctica',
         subtitle: '2023',
