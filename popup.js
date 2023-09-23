@@ -90,7 +90,7 @@ function newWeek(token, dbID, jsonParam) {
             "time_zone": null
           }
         },
-        "Notas": {
+        "Nombre": {
           "title": [
 			    	{
 				    	"text": {
@@ -151,59 +151,46 @@ function fetchData(token, dbID, callback) {
       })
 }
 function processData (token, dbID, json) {
-  let stats = {
-    "total":0,
-    "currentWeekTotal":0,
-    "revCount":0,
-    "currentWeekRevCount":0,
-    "techCount":0,
-    "currentWeekTechCount":0,
-    "topPieceCount":0,
-    "currentWeekTopPieceCount":0,
-    "newPieceCount":0,
-    "currentWeekNewPieceCount":0
-  }
+  let stats = { "total":0, "currentWeekTotal":0 }
   json.results.forEach((r) => {
     stats.total++
     const properties = r.properties
-    const technique = properties["T\u00E9cnica"]["checkbox"]
-    const revision = properties["Revisi\u00F3n"]["checkbox"]
-    const topPiece = properties["Pieza top"]["checkbox"]
-    const newPiece = properties["Nueva pieza"]["checkbox"]
     const thisWeek = properties["Semana actual"]["checkbox"]
     if (thisWeek) stats.currentWeekTotal++
-    if (technique) {
-      stats.techCount++
-      if (thisWeek) stats.currentWeekTechCount++
-    }
-    if (revision) {
-      stats.revCount++
-      if (thisWeek) stats.currentWeekRevCount++
-    }
-    if (topPiece) {
-      stats.topPieceCount++
-      if (thisWeek) stats.currentWeekTopPieceCount++
-    }
-    if (newPiece) {
-      stats.newPieceCount++
-      if (thisWeek) stats.currentWeekNewPieceCount++
-    }
+    for (const key in properties) {
+      if (!properties.hasOwnProperty(key)) continue
+      if (key == "Semana actual") continue
+      if (!properties[key].hasOwnProperty("type")) continue
+      if (properties[key]["type"] == "checkbox") {
+      const checked = properties[key]["checkbox"]
+        if (!stats.hasOwnProperty(key)) {
+          stats[key] = {
+            "total": checked ? 1:0,
+            "currentWeek": (checked && thisWeek) ? 1:0 
+          }
+        } else {
+          if (checked) stats[key]["total"]++
+          if (checked && thisWeek) stats[key]["currentWeek"]++
+        }
+      }
+    } 
   })
+  console.warn("stats: " + JSON.stringify(stats))
   chart(stats)
 }
 function chart (stats) {
   google.charts.load("current", { packages: ["corechart"]});
   google.charts.load("current", { packages: ["bar"]});
+  let dataArray = [['Faceta', '\u00daltima semana', 'Total']]
+  for (const key in stats) {
+    if (!stats.hasOwnProperty(key)) continue
+    if (!stats[key].hasOwnProperty("total")) continue
+    dataArray.push([key, stats[key]["currentWeek"]/stats.currentWeekTotal, stats[key]["total"]/stats.total])
+  }
+  console.warn("dataArray: " + dataArray)
   google.charts.setOnLoadCallback(function () {
     
-    var data = google.visualization.arrayToDataTable([
-      ['Faceta', '\u00daltima semana', 'Total'],
-      ['T\u00E9cnica', stats.currentWeekTechCount/stats.currentWeekTotal, stats.techCount/stats.total],
-      ['Revisi\u00F3n', stats.currentWeekRevCount/stats.currentWeekTotal, stats.revCount/stats.total],
-      ['Pieza top', stats.currentWeekTopPieceCount/stats.currentWeekTotal, stats.topPieceCount/stats.total],
-      ['Nueva pieza', stats.currentWeekNewPieceCount/stats.currentWeekTotal, stats.newPieceCount/stats.total],
-
-    ]);
+    var data = google.visualization.arrayToDataTable(dataArray);
 
     var options = {
       backgroundColor: {
