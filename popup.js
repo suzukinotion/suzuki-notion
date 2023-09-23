@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     browser.storage.local.set({'dbID': dbID})
   })
 });
+const weekDays = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]//TODO: UNICODE accents
 function newWeek(token, dbID, jsonParam) {
   const exactCurrentDate = new Date()
   const currentDate = new Date(exactCurrentDate.getFullYear(), exactCurrentDate.getMonth(), exactCurrentDate.getDate())
@@ -94,7 +95,7 @@ function newWeek(token, dbID, jsonParam) {
           "title": [
 			    	{
 				    	"text": {
-					    	"content": `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+					    	"content": `Dia ${i+1} / ${weekDays[date.getDay()]}`
 			    		}
 		    		}
 		    	]
@@ -124,7 +125,7 @@ function newWeek(token, dbID, jsonParam) {
         console.error("There was a problem with the fetch operation:", error);
       })
   }
-  new Promise (r => setTimeout(r, 500)).then(browser.tabs.reload())
+  new Promise (r => setTimeout(r, 1000)).then(browser.tabs.reload())
   
 }
 function fetchData(token, dbID, callback) {
