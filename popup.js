@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
   dbForm.addEventListener('submit', function (submit) {
     submit.preventDefault()
     let dbID = document.getElementById("dbInput").value
+    console.warn("value: '" + dbID + "'")
+    if (dbID == "") {
+      browser.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        document.getElementById("dbInput").value = tabs[0].url.split(".so/")[1].split("?v=")[0]
+        browser.storage.local.set({'dbID': document.getElementById("dbInput").value})
+      })
+      return
+    }
     browser.storage.local.set({'dbID': dbID})
   })
 });
