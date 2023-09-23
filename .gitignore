@@ -2,3 +2,4 @@
 *.env
 *.sh
 web-ext-artifacts/
+*.web-extension-id
