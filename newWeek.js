@@ -5,7 +5,7 @@ const weekDays = [
   "Miercoles",
   "Jueves",
   "Viernes",
-"Sabado",
+  "Sabado",
 ]; //TODO: UNICODE accents
 export function newWeek(token, dbID, jsonParam) {
   const exactCurrentDate = new Date();
@@ -107,6 +107,6 @@ function newWeekRows(dbID, token, currentDate, existingCurrentWeekPages) {
     );
   }
   Promise.all(promises).then(() => {
-    browser.tabs.reload()
-  })
+    browser.tabs.reload();
+  });
 }
