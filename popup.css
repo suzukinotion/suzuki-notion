@@ -1,14 +1,38 @@
-.dataForm {float: left; width: 50%;}
 body {
-    font-family: 'Dosis';font-size: 22px;
-    background-color: #111111;
+  font-family: 'Dosis';font-size: 22px;
+  background-color: #111111;
+  max-width: 650px;
 }
-
+.dataForm {
+  display: flex;
+  flex-direction: column;
+}
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}  
+.dataDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.functionsDiv {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
 * {
   box-sizing: border-box;
 }
 .gradient.button {
+  margin-bottom: 10px;
   line-height: 0;
+}
+.gradient.input {
+  margin-bottom: 10px;
 }
 .gradient.button:active {
   border: 0.15em solid #0000;
@@ -26,7 +50,6 @@ body {
   border-style: none;
   outline: none;
   height: calc(1.6em + 0.5em);
-  width: 100%;
   padding: 0.8em 1em;
   border: 0.25em solid transparent;
   background-image: linear-gradient(#000, #000),

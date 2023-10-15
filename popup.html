@@ -6,25 +6,31 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-  <div id="chartContainer" style="width: 500px; height: 500px; display: none"></div>
-  <form id="tokenForm" class="dataForm">
-    <label for="tokenInput">Token:</label>
-    <input type="password" id="tokenInput" name="token" class="gradient" required>
-    <br>
-    <button class="gradient button" type="submit">Set Token</button>
-  </form>
-  <form id="dbForm" class="dataForm">
-    <label for="dbInput">Database ID:</label>
-    <input type="text" id="dbInput" name="dbID" class="gradient">
-    <br>
-    <button class="gradient button" type="submit">Set Database ID</button>
-  </form>
   <script src="popup.js" type="module"></script>
   <script src="popupLoad.js" type="module"></script>
   <script src="checkboxCharts.js" type="module"></script>
-  <script src="newWeek.js" type="module"></script>
-  <button id="chartCheckboxesButton" class="gradient button">Calcular datos</button>
-  <button id="newWeekButton" class="gradient button">Nueva semana</button>
+<script src="newWeek.js" type="module"></script>
+  <div id="chartContainer" style="width: 500px; height: 500px; display: none"></div>
+  <div class="mainContent">
+    <div class="dataDiv">
+      <form id="tokenForm" class="dataForm">
+        <label for="tokenInput">Token:</label>
+        <input type="password" id="tokenInput" name="token" class="gradient input" required>
+        <br>
+        <button class="gradient button" type="submit">Set Token</button>
+      </form>
+      <form id="dbForm" class="dataForm">
+        <label for="dbInput">Database ID:</label>
+        <input type="text" id="dbInput" name="dbID" class="gradient input">
+        <br>
+        <button class="gradient button" type="submit">Set Database ID</button>
+      </form>
+    </div>
+    <div class="functionsDiv">
+      <button id="chartCheckboxesButton" class="gradient button">Calcular datos</button>
+      <button id="newWeekButton" class="gradient button">Nueva semana</button>
+    </div>
+  </div>
 </body>
 </html>
 
