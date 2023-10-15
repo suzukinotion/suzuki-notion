@@ -75,7 +75,7 @@ function newWeekRows(dbID, token, currentDate, existingCurrentWeekPages) {
           "type": "date",
           "date": {
             "start": `${date.getFullYear()}-${
-              date.getMonth().toString().length == 1 ? "0" : ""
+              (date.getMonth()+1).toString().length == 1 ? "0" : ""
             }${date.getMonth() + 1}-${
               date.getDate().toString().length == 1 ? "0" : ""
             }${date.getDate()}`,
